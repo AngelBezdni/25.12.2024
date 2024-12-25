@@ -1,15 +1,14 @@
 package com.example.springboot_greeting_app.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class GreetingController {
 
-    @GetMapping("/")
-    public String greeting(Model model) {
-        model.addAttribute("message", "Приветствую вас!");
-        return "index";
+    @GetMapping("/greet")
+    public String greet(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return String.format("Hello, %s!", name);
     }
 }
